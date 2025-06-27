@@ -87,7 +87,7 @@ export class ContextService {
   resolve<T>(key: Key, throwOnMissing?: boolean): T | null {
     const isChild = this.isChildContext();
     const value = this.get<T>(key, !isChild);
-    if (value !== null && value !== undefined) return value;
+    if (value !== undefined) return value;
     return this.get<T>(key, throwOnMissing);
   }
 
