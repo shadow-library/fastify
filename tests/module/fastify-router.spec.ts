@@ -365,7 +365,7 @@ describe('FastifyRouter', () => {
       await router.resolveChildRoute('/child');
 
       expect(context).toHaveBeenCalledWith({ url: '/child', method: 'GET', query: {}, params: {} });
-      expect(requestLogger).toHaveBeenCalledWith({ url: '/child', method: 'GET', query: {}, params: {} }, expect.any(ChildRouteResponse));
+      expect(requestLogger).toHaveBeenCalledWith({ url: '/child', method: 'GET', query: {}, params: {} }, expect.any(ChildRouteResponse), expect.any(Function));
       expect(handler).toHaveBeenCalledWith({ url: '/child', method: 'GET', query: {}, params: {} }, expect.any(ChildRouteResponse));
     });
 
