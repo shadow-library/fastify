@@ -392,7 +392,7 @@ describe('FastifyRouter', () => {
       expect(handler).not.toHaveBeenCalled();
     });
 
-    it.skip('should handle errors in child routes', async () => {
+    it('should handle errors in child routes', async () => {
       const middleware = { metatype: Class, metadata: { type: 'onError', generates: false }, handler: jest.fn() } as any;
       const route = { metadata: { path: '/child', method: HttpMethod.GET } } as any;
       const error = new Error('Test error');
