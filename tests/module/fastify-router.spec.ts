@@ -369,7 +369,7 @@ describe('FastifyRouter', () => {
       expect(handler).toHaveBeenCalledWith({ url: '/child', method: 'GET', query: {}, params: {} }, expect.any(ChildRouteResponse));
     });
 
-    it.skip('should validate child route parameters', async () => {
+    it('should validate child route parameters', async () => {
       const paramsSchema = { type: 'object', properties: { id: { type: 'string', pattern: '^[0-9]+$' } }, required: ['id'] };
       const querySchema = { type: 'object', properties: { search: { type: 'string' } } };
       const route = { metadata: { path: '/child/:id', method: HttpMethod.GET, schemas: { params: paramsSchema, query: querySchema } } } as any;
