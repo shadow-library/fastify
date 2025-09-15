@@ -97,7 +97,7 @@ describe('Hello World', () => {
   });
 
   it('GET /api/not-found', async () => {
-    const response = await router.mockRequest({ method: 'GET', url: '/api/not-found' });
+    const response = await router.mockRequest().get('/api/not-found');
     expect(response.statusCode).toBe(404);
     expect(response.json()).toStrictEqual({
       code: 'S002',
