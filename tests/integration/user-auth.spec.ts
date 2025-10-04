@@ -67,7 +67,7 @@ describe('User Auth', () => {
   });
 
   describe('POST /api/users', () => {
-    const newUser = { email: 'alice@example.com', name: 'Alice', password: 'password1', accessLevel: 1 };
+    const newUser = { email: 'dave@example.com', name: 'Dave', password: 'password1', accessLevel: 1 };
 
     it('should return 401 for unauthenticated users', async () => {
       const response = await router.mockRequest().post('/api/users').body(newUser);
