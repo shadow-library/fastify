@@ -153,7 +153,7 @@ import { HttpController, Get, Post, Middleware, Body, Params } from '@shadow-lib
 // Custom Authentication Guard
 @Middleware({ type: 'preHandler', weight: 100 })
 class AuthGuard {
-  use(request: FastifyRequest, reply: FastifyReply, done: Function) {
+  use(request: HttpRequest, reply: HttpResponse, done: HttpCallback) {
     const token = request.headers.authorization?.replace('Bearer ', '');
     if (!token) {
       return reply.status(401).send({ error: 'Unauthorized' });
@@ -366,7 +366,7 @@ Create custom middleware by implementing the `Middleware` decorator:
 ```typescript
 @Middleware({ type: 'preHandler', weight: 50 })
 export class LoggingMiddleware {
-  use(request: FastifyRequest, reply: FastifyReply, done: Function) {
+  use(request: HttpRequest, reply: HttpResponse, done: HttpCallback) {
     console.log(`${request.method} ${request.url}`);
     done();
   }
@@ -376,7 +376,7 @@ export class LoggingMiddleware {
 @Middleware({ type: 'preValidation', weight: 75 })
 export class ValidationMiddleware {
   generate(route: RouteMetadata) {
-    return (request: FastifyRequest, reply: FastifyReply, done: Function) => {
+    return (request: HttpRequest, reply: HttpResponse, done: HttpCallback) => {
       // Custom validation logic based on route metadata
       done();
     };
