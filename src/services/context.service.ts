@@ -128,7 +128,7 @@ export class ContextService implements ContextExtension {
     return this.get<string>(RID, throwOnMissing);
   }
 
-  extend(extension: ContextExtension & ThisType<this & ContextExtension>): this {
+  extend<T extends ContextExtension = ContextExtension>(extension: T & ThisType<this & T>): this {
     return Object.assign(this, extension);
   }
 }
