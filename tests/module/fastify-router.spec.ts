@@ -511,6 +511,7 @@ describe('FastifyRouter', () => {
 
       // Verify the function was called for each request
       expect(childRouteHeadersMock).toHaveBeenCalledTimes(3);
+      expect(childRouteHeadersMock).toHaveBeenCalledWith(context);
       expect(fn).toHaveBeenCalledTimes(3);
     });
   });

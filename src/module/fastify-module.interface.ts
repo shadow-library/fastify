@@ -10,6 +10,7 @@ import { Promisable } from 'type-fest';
  * Importing user defined packages
  */
 import { ErrorHandler } from '../interfaces';
+import { ContextService } from '../services';
 
 /**
  * Defining types
@@ -51,7 +52,7 @@ export interface FastifyConfig extends FastifyServerOptions {
    * Function to provide custom headers for internal child route requests.
    * Useful for passing authentication tokens or other necessary headers.
    */
-  childRouteHeaders?: () => Record<string, string>;
+  childRouteHeaders?: (contextService: ContextService) => Record<string, string>;
 
   /**
    * Masks fields marked as sensitive in API inputs (body, query, and URL params) when written to logs.
