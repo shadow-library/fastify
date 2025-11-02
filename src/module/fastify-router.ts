@@ -374,7 +374,7 @@ export class FastifyRouter extends Router {
   async resolveChildRoute<T extends JsonValue = JsonObject>(url: string, headers: Record<string, string> = {}): Promise<T> {
     if (!this.childRouter) throw new InternalError('Child routes are not enabled');
     const childHeaders = this.config.childRouteHeaders?.(this.context) ?? {};
-    Object.assign(headers, { ...childHeaders, 'x-service': 'internal-child-route' });
+    Object.assign(headers, childHeaders, { 'x-service': 'internal-child-route' });
     const response = await this.instance.inject({ method: 'GET', url, headers });
     return response.json() as T;
   }
