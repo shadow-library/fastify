@@ -185,7 +185,15 @@ export class FastifyRouter extends Router {
       switch (controller.metadata[HTTP_CONTROLLER_TYPE]) {
         case 'router': {
           const { instance, metadata, metatype } = controller;
-          const basePath = metadata.path ?? '/';
+
+          /** Prepare base path with versioning if enabled */
+          let basePath = metadata.path ?? '/';
+          if (this.config.prefixVersioning) {
+            const version = metadata.version ? `v${metadata.version}` : 'v1';
+            const connector = basePath.startsWith('/') ? '' : '/';
+            basePath = '/' + version + connector + basePath;
+          }
+
           for (const route of controller.routes) {
             const routePath = route.metadata.path ?? '';
             const path = basePath + routePath;
