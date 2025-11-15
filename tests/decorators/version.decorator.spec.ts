@@ -3,7 +3,6 @@
  */
 import { beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { Route } from '@shadow-library/app';
-import { Field, Schema } from '@shadow-library/class-schema';
 
 /**
  * Importing user defined packages

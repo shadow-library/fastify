@@ -163,12 +163,12 @@ describe('FastifyRouter', () => {
 
     it('should set version prefix if versioning is enabled', () => {
       router['config'].prefixVersioning = true;
-      const metadata = { [HTTP_CONTROLLER_TYPE]: 'router', path: '/api', version: 3 } as const;
+      const metadata = { [HTTP_CONTROLLER_TYPE]: 'router', path: '/api' } as const;
       const parsedControllers = parseControllers([
-        { metadata, metatype: Class, instance: classInstance, routes: [{ metadata: { path: '/users' }, handler, handlerName, paramtypes: [] }] },
+        { metadata, metatype: Class, instance: classInstance, routes: [{ metadata: { path: '/users', version: 3 }, handler, handlerName, paramtypes: [] }] },
       ]);
 
-      expect(parsedControllers.routes[0]?.metadata).toStrictEqual({ path: '/v3/api/users' });
+      expect(parsedControllers.routes[0]?.metadata).toStrictEqual({ path: '/v3/api/users', version: 3 });
     });
 
     it('should parse generate middleware controller', () => {

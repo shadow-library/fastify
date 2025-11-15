@@ -16,6 +16,6 @@ import { Integer } from 'type-fest';
  * Declaring the constants
  */
 
-export function Version<T extends number>(version: Integer<T>): MethodDecorator {
+export function Version<T extends number>(version: Integer<T>): ClassDecorator & MethodDecorator {
   return Route({ version });
 }
