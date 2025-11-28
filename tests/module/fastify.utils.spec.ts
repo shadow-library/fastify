@@ -117,4 +117,21 @@ describe('Create Fastify Instance', () => {
     const result = validate({ id: '123' });
     expect(result).toBe(false);
   });
+
+  it('should apply custom ajv options when config.ajv.customOptions is provided', async () => {
+    const customOptions = { verbose: true };
+    instance = await createFastifyInstance({ host: '', port: 3000, errorHandler, ajv: { customOptions } });
+    expect(instance).toBeDefined();
+    expect(instance.setValidatorCompiler).toHaveBeenCalled();
+  });
+
+  it('should apply ajv plugins when config.ajv.plugins is provided', async () => {
+    const mockPlugin = jest.fn();
+    const pluginOptions = { testOption: true };
+    instance = await createFastifyInstance({ host: '', port: 3000, errorHandler, ajv: { plugins: [[mockPlugin, pluginOptions], mockPlugin] } });
+    expect(instance).toBeDefined();
+    expect(mockPlugin).toHaveBeenCalledTimes(4);
+    expect(mockPlugin).toHaveBeenNthCalledWith(1, expect.any(Object), pluginOptions);
+    expect(mockPlugin).toHaveBeenNthCalledWith(2, expect.any(Object), pluginOptions);
+  });
 });

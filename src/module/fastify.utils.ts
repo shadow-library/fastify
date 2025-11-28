@@ -84,5 +84,19 @@ export async function createFastifyInstance(config: FastifyConfig, fastifyFactor
   instance.setErrorHandler(errorHandler.handle.bind(errorHandler));
   instance.setValidatorCompiler(compileValidator);
 
+  if (config.ajv) {
+    if (config.ajv.customOptions) {
+      Object.assign(strictValidator.opts, config.ajv.customOptions);
+      Object.assign(lenientValidator.opts, config.ajv.customOptions);
+    }
+
+    for (let plugin of config.ajv.plugins ?? []) {
+      if (typeof plugin === 'function') plugin = [plugin, {}];
+      const [ajvPlugin, options] = plugin;
+      ajvPlugin(strictValidator, options);
+      ajvPlugin(lenientValidator, options);
+    }
+  }
+
   return fastifyFactory ? await fastifyFactory(instance) : instance;
 }
