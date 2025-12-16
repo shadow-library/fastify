@@ -1,7 +1,7 @@
 /**
  * Importing npm packages
  */
-import { beforeEach, describe, expect, it, jest } from '@jest/globals';
+import { describe, expect, it } from '@jest/globals';
 import { ClassSchema, Field, Schema } from '@shadow-library/class-schema';
 
 /**

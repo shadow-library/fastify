@@ -3,7 +3,7 @@
  */
 import { beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { ControllerRouteMetadata } from '@shadow-library/app';
-import { ClassSchema, Field, Schema, TransformerFactory } from '@shadow-library/class-schema';
+import { ClassSchema, Field, Schema } from '@shadow-library/class-schema';
 import { Fn, InternalError, Logger, utils, withThis } from '@shadow-library/common';
 import { FastifyInstance, fastify } from 'fastify';
 
@@ -830,10 +830,11 @@ describe('FastifyRouter', () => {
 
     it('should not transform the request body payload when body transformer is not found', async () => {
       const handler = router['transformRequestHandler']() as any;
-      const request = { routeOptions: { config: {} }, body: { bool: true, bigint: '5' } };
+      const originalBody = { bool: true, bigint: '5' };
+      const request = { routeOptions: { config: {} }, body: originalBody };
 
       await handler(request, {});
-      expect(request.body).toBe(request.body);
+      expect(request.body).toBe(originalBody);
     });
 
     it('should transform the request body payload', async () => {

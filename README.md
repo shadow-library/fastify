@@ -974,7 +974,7 @@ flowchart LR
   end
 
  subgraph requestFlow["Request Flow"]
-    ReqHandler["Route Handler (Recieves Transformed Data)"]
+    ReqHandler["Route Handler (Receives Transformed Data)"]
     ReqTransform["Transform (Post Validation)"]
     Validation["Validation (AJV)"]
     rawReq["Raw Request (JSON)"]
