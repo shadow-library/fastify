@@ -74,6 +74,8 @@ describe('data-transformers', () => {
       expect(INBUILT_TRANSFORMERS['strip:null']('hello')).toBe('hello');
       expect(INBUILT_TRANSFORMERS['strip:null'](false)).toBe(false);
       expect(INBUILT_TRANSFORMERS['strip:null']({})).toStrictEqual({});
+      expect(INBUILT_TRANSFORMERS['strip:null']([])).toStrictEqual([]);
+      expect(INBUILT_TRANSFORMERS['strip:null'](undefined)).toBeUndefined();
     });
   });
 });
