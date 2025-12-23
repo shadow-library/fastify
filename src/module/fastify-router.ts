@@ -410,7 +410,7 @@ export class FastifyRouter extends Router {
       }
 
       const responseSchemas = { ...defaultResponseSchemas };
-      routeOptions.schema = { response: responseSchemas, ...metadata.operation };
+      routeOptions.schema = { ...metadata.operation, response: responseSchemas };
       routeOptions.attachValidation = metadata.silentValidation ?? false;
       const { body: bodySchema, params: paramsSchema, query: querySchema, response: responseSchema } = metadata.schemas ?? {};
       const isMaskEnabled = this.config.maskSensitiveData ?? true;
