@@ -22,7 +22,8 @@ export function HttpController(path = ''): ClassDecorator {
   return target => {
     let tag = target.name;
     for (const suffix of controllerNameSuffixes) tag = tag.replace(suffix, '');
-    tag = tag.replace(/([a-z])([A-Z])/g, '$1 $2');
+    if (!tag) tag = target.name;
+    tag = tag.replace(/([a-z])([A-Z])|([A-Z]+)([A-Z][a-z])/g, '$1$3 $2$4');
 
     Controller({ [HTTP_CONTROLLER_TYPE]: 'router', path })(target);
     ApiOperation({ tags: [tag] })(target);

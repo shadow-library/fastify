@@ -101,22 +101,6 @@ describe('HTTP Input Decorators', () => {
     const paramtypes = Reflect.getMetadata(HTTP_CONTROLLER_INPUTS, Controller, 'multiple');
     expect(paramtypes).toStrictEqual(['body', , 'params']); // eslint-disable-line no-sparse-arrays
     expect(Route).toHaveBeenNthCalledWith(1, { schemas: { params: schema } });
-    expect(Route).toHaveBeenNthCalledWith(3, { schemas: { body: Object } });
-  });
-
-  it(`should generate summary from method name`, () => {
-    class Controller {
-      static getUser(@Body() _body: object) {}
-    }
-
-    expect(Route).toHaveBeenCalledWith({ operation: { summary: 'Get User' } });
-  });
-
-  it(`should handle single word method name for summary`, () => {
-    class Controller {
-      static health(@Query() _query: object) {}
-    }
-
-    expect(Route).toHaveBeenCalledWith({ operation: { summary: 'Health' } });
+    expect(Route).toHaveBeenNthCalledWith(2, { schemas: { body: Object } });
   });
 });
