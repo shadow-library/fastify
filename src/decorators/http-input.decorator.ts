@@ -10,6 +10,7 @@ import { JSONSchema, SchemaClass } from '@shadow-library/class-schema';
  * Importing user defined packages
  */
 import { HTTP_CONTROLLER_INPUTS, PARAMTYPES_METADATA } from '../constants';
+import { ApiOperation } from './api-operation.decorator';
 
 /**
  * Defining types
@@ -45,6 +46,10 @@ export function HttpInput(type: RouteInputType, schema?: JSONSchema): ParameterD
     const descriptor = Reflect.getOwnPropertyDescriptor(target, propertyKey);
     assert(descriptor, 'Cannot apply decorator to a non-method');
     Route({ schemas: { [type]: schema } })(target, propertyKey, descriptor);
+
+    const methodName = propertyKey.toString();
+    const summary = methodName.charAt(0).toUpperCase() + methodName.slice(1).replace(/([a-z])([A-Z])/g, '$1 $2');
+    ApiOperation({ summary })(target, propertyKey, descriptor);
   };
 }
 
