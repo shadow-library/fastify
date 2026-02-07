@@ -17,10 +17,17 @@ import { ContextService } from '../services';
  * Defining types
  */
 
+declare module '@shadow-library/common' {
+  export interface ConfigRecords {
+    'app.port': number;
+    'app.host': string;
+  }
+}
+
 export interface FastifyConfig extends FastifyServerOptions {
   /**
    * The host on which the Fastify instance is to be started
-   * @default '127.0.0.1'
+   * @default localhost
    */
   host?: string;
 
