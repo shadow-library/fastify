@@ -28,7 +28,7 @@ import { createFastifyInstance } from './fastify.utils';
 @Module({})
 export class FastifyModule {
   private static getDefaultConfig(): FastifyConfig {
-    const stackTrace = Config.get('app.dev.stackTrace');
+    const stackTrace = Config.get('app.dev.stack-trace');
     const errorResponseClass = stackTrace ? DevErrorResponseDto : ErrorResponseDto;
     const errorResponseSchema = ClassSchema.generate(errorResponseClass);
 

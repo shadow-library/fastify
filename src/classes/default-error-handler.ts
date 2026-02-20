@@ -30,7 +30,7 @@ const invalidRequestError = new ServerError(ServerErrorCode.S006);
 
 export class DefaultErrorHandler implements ErrorHandler {
   private readonly logger = Logger.getLogger(NAMESPACE, 'DefaultErrorHandler');
-  private readonly isStackTraceEnabled = Config.get('app.dev.stackTrace');
+  private readonly isStackTraceEnabled = Config.get('app.dev.stack-trace');
 
   constructor() {
     if (this.isStackTraceEnabled && Config.isProd()) this.logger.warn('Stack trace logging is enabled in production');

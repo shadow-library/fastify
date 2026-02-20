@@ -18,7 +18,7 @@ declare module '@shadow-library/common' {
     'app.host': string;
 
     'app.dev.delay': number;
-    'app.dev.stackTrace': boolean;
+    'app.dev.stack-trace': boolean;
   }
 }
 
@@ -31,4 +31,4 @@ Config.load('app.host', { defaultValue: 'localhost' });
 Config.load('app.port', { defaultValue: '8080', validateType: 'integer' });
 
 Config.load('app.dev.delay', { validateType: 'integer' });
-Config.load('app.dev.stackTrace', { defaultValue: isDevValue, validateType: 'boolean' });
+Config.load('app.dev.stack-trace', { defaultValue: isDevValue, validateType: 'boolean' });
