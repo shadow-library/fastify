@@ -1,3 +1,6 @@
+> **Archived — migrated to the [platform monorepo](https://github.com/shadow-library/platform).**
+> This code now lives at [`packages/fastify`](https://github.com/shadow-library/platform/tree/main/packages/fastify) with its full history; this repository is read-only.
+
 # @shadow-library/fastify
 
 A powerful TypeScript-first Fastify wrapper featuring decorator-based routing, automatic validation, response serialization, and comprehensive middleware support.
